@@ -1,5 +1,6 @@
-// src/components/Leaderboard.js
+// src/components/Leaderboard.jsx
 import React from 'react';
+import '../css/Leaderboard.css';
 
 const Leaderboard = ({ players }) => {
   const topPlayers = [...players]
@@ -8,7 +9,7 @@ const Leaderboard = ({ players }) => {
     .slice(0, 3);
 
   return (
-    <div>
+    <div className="leaderboard">
       <h2>Leaderboard</h2>
       <ol>
         {topPlayers.map((player) => (

@@ -1,0 +1,13 @@
+/* src/components/Leaderboard.css */
+.leaderboard {
+    border: 2px solid #61dafb;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: left;
+  }
+  
+  ol {
+    padding-left: 20px;
+  }
+  

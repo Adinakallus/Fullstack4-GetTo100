@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PlayerRegistration from './Components/PlayerRegistration';
 import GameBoard from './Components/Gameboard';
 import Leaderboard from './Components/Leaderboard';
+import '../src/css/App.css';
 
 const App = () => {
   const [players, setPlayers] = useState([]);
@@ -29,11 +30,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Get To 100</h1>
+      <header>
+        <h1>Get To 100</h1>
+      </header>
       {!gameStarted ? (
-        <div>
+        <div className="registration-container">
           <PlayerRegistration addPlayer={addPlayer} />
-          <h3> Players in Current Game:</h3>
+          <h3>Players in Current Game:</h3>
           <ul>
             {players.map((player, index) => (
               <li key={index}>
@@ -44,19 +47,21 @@ const App = () => {
           <button onClick={startGame} disabled={players.length === 0}>Start Game</button>
         </div>
       ) : (
-        <div className="game-boards">
-          {players.map((player, index) => (
-            <GameBoard
-              key={player.name}
-              player={player}
-              isActive={index === activePlayerIndex}
-              updatePlayer={(updatedPlayer) => updatePlayer(index, updatedPlayer)}
-              nextPlayerTurn={nextPlayerTurn}
-            />
-          ))}
+        <div className="game-container">
+          <div className="game-boards">
+            {players.map((player, index) => (
+              <GameBoard
+                key={player.name}
+                player={player}
+                isActive={index === activePlayerIndex}
+                updatePlayer={(updatedPlayer) => updatePlayer(index, updatedPlayer)}
+                nextPlayerTurn={nextPlayerTurn}
+              />
+            ))}
+          </div>
+          <Leaderboard players={players} />
         </div>
       )}
-      <Leaderboard players={players} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
-// src/components/GameBoard.js
+// src/components/GameBoard.jsx
 import React, { useState, useEffect } from 'react';
+import '../css/Gameboard.css';
 
 const GameBoard = ({ player, isActive, updatePlayer, nextPlayerTurn }) => {
   const [currentNumber, setCurrentNumber] = useState(Math.floor(Math.random() * 100));

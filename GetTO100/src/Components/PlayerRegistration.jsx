@@ -1,5 +1,6 @@
 // src/components/PlayerRegistration.jsx
 import React, { useState } from 'react';
+import '../css/PlayerRegistration.css';
 
 const PlayerRegistration = ({ addPlayer }) => {
   const [name, setName] = useState('');
@@ -15,7 +16,7 @@ const PlayerRegistration = ({ addPlayer }) => {
           setErrorMessage('Player already exists. Please use existing player option.');
           return;
         } else {
-          const player = { name, games: [], averageSteps: 0 };
+          const player = { name, games: [], highScore: 0 };
           existingPlayers[name] = player;
           localStorage.setItem('players', JSON.stringify(existingPlayers));
           addPlayer(player);
@@ -45,7 +46,7 @@ const PlayerRegistration = ({ addPlayer }) => {
   };
 
   return (
-    <div>
+    <div className="player-registration">
       <h2>Register Players:</h2>
       {!showInput ? (
         <div>
@@ -64,7 +65,7 @@ const PlayerRegistration = ({ addPlayer }) => {
           <button onClick={handleAddPlayer}>Add Player</button>
         </div>
       )}
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };

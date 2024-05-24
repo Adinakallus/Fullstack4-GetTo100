@@ -1,0 +1,18 @@
+/* src/components/GameBoard.css */
+.game-board {
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.game-board.active {
+  background-color: #e0f7fa;
+}
+
+.actions button {
+  margin: 5px;
+  padding: 5px 10px;
+}
