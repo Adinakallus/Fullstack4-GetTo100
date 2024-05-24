@@ -29,11 +29,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>100 to Get Game</h1>
+      <h1>Get To 100</h1>
       {!gameStarted ? (
         <div>
           <PlayerRegistration addPlayer={addPlayer} />
-          <h3>Registered Players:</h3>
+          <h3> Players in Current Game:</h3>
           <ul>
             {players.map((player, index) => (
               <li key={index}>
