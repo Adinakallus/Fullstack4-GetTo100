@@ -1,0 +1,25 @@
+/* src/App.css */
+.App {
+  text-align: center;
+}
+
+.game-boards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-board {
+  border: 1px solid #000;
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+}
+
+.game-board.active {
+  background-color: yellow;
+}
+
+.actions button {
+  margin: 5px;
+}
