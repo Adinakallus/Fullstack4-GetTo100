@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import PlayerRegistration from './Components/PlayerRegistration';
 import GameBoard from './Components/Gameboard';
@@ -26,6 +25,11 @@ const App = () => {
 
   const startGame = () => {
     setGameStarted(true);
+  };
+
+  const removePlayer = (name) => {
+    setPlayers(players.filter(player => player.name !== name));
+    setActivePlayerIndex(0);
   };
 
   return (
@@ -56,10 +60,24 @@ const App = () => {
                 isActive={index === activePlayerIndex}
                 updatePlayer={(updatedPlayer) => updatePlayer(index, updatedPlayer)}
                 nextPlayerTurn={nextPlayerTurn}
+                removePlayer={removePlayer}
               />
             ))}
           </div>
           <Leaderboard players={players} />
+          <div className="player-history">
+            <h2>Player Game History</h2>
+            {players.map((player) => (
+              <div key={player.name}>
+                <h3>{player.name}</h3>
+                <ul>
+                  {player.games.map((game, index) => (
+                    <li key={index}>Game {index + 1}: {game} steps</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
