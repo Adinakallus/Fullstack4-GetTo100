@@ -29,13 +29,11 @@ const App = () => {
   };
 
   const removePlayer = (name) => {
-    setPlayers(players.filter(player => player.name !== name));
     const updatedPlayers = players.filter(player => player.name !== name);
     setPlayers(updatedPlayers);
     if (updatedPlayers.length === 0) {
       setGameStarted(false);
     } else {
-    setActivePlayerIndex(0);
       setActivePlayerIndex(0);
     }
   };
@@ -69,6 +67,7 @@ const App = () => {
                 updatePlayer={updatePlayer}
                 nextPlayerTurn={nextPlayerTurn}
                 removePlayer={removePlayer}
+                isLastPlayer={index === players.length - 1}
               />
             ))}
           </div>
