@@ -25,7 +25,14 @@ const App = () => {
   };
 
   const startGame = () => {
+    // Reset game history for each player
+    const resetPlayers = players.map(player => ({
+      ...player,
+      games: []
+    }));
+    setPlayers(resetPlayers);
     setGameStarted(true);
+    setActivePlayerIndex(0); // Ensure the first player is active at the start
   };
 
   const removePlayer = (name) => {
