@@ -13,9 +13,10 @@ const App = () => {
     setPlayers([...players, player]);
   };
 
-  const updatePlayer = (index, player) => {
-    const newPlayers = [...players];
-    newPlayers[index] = player;
+  const updatePlayer = (updatedPlayer) => {
+    const newPlayers = players.map(player => 
+      player.name === updatedPlayer.name ? updatedPlayer : player
+    );
     setPlayers(newPlayers);
   };
 
@@ -44,7 +45,7 @@ const App = () => {
           <ul>
             {players.map((player, index) => (
               <li key={index}>
-                {player.name} - High Score: {player.games.length > 0 ? Math.min(...player.games) : 'N/A'}
+                {player.name} - High Score: {player.highScore || 'N/A'}
               </li>
             ))}
           </ul>
@@ -58,7 +59,7 @@ const App = () => {
                 key={player.name}
                 player={player}
                 isActive={index === activePlayerIndex}
-                updatePlayer={(updatedPlayer) => updatePlayer(index, updatedPlayer)}
+                updatePlayer={updatePlayer}
                 nextPlayerTurn={nextPlayerTurn}
                 removePlayer={removePlayer}
               />
