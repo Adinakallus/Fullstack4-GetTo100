@@ -1,13 +1,12 @@
-/* src/components/Leaderboard.css */
 .leaderboard {
-    border: 2px solid #61dafb;
-    border-radius: 10px;
-    padding: 20px;
-    width: 200px;
-    text-align: left;
-  }
-  
-  ol {
-    padding-left: 20px;
-  }
-  
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.leaderboard ol {
+  padding-left: 20px;
+}

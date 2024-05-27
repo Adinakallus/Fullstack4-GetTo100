@@ -25,14 +25,13 @@ const App = () => {
   };
 
   const startGame = () => {
-    // Reset game history for each player
     const resetPlayers = players.map(player => ({
       ...player,
       games: []
     }));
     setPlayers(resetPlayers);
     setGameStarted(true);
-    setActivePlayerIndex(0); // Ensure the first player is active at the start
+    setActivePlayerIndex(0);
   };
 
   const removePlayer = (name) => {
@@ -65,32 +64,36 @@ const App = () => {
         </div>
       ) : (
         <div className="game-container">
-          <div className="game-boards">
-            {players.map((player, index) => (
-              <GameBoard
-                key={player.name}
-                player={player}
-                isActive={index === activePlayerIndex}
-                updatePlayer={updatePlayer}
-                nextPlayerTurn={nextPlayerTurn}
-                removePlayer={removePlayer}
-                isLastPlayer={index === players.length - 1}
-              />
-            ))}
+          <div className="left-container">
+            <div className="game-boards">
+              {players.map((player, index) => (
+                <GameBoard
+                  key={player.name}
+                  player={player}
+                  isActive={index === activePlayerIndex}
+                  updatePlayer={updatePlayer}
+                  nextPlayerTurn={nextPlayerTurn}
+                  removePlayer={removePlayer}
+                  isLastPlayer={index === players.length - 1}
+                />
+              ))}
+            </div>
           </div>
-          <Leaderboard players={players} />
-          <div className="player-history">
-            <h2>Player Game History</h2>
-            {players.map((player) => (
-              <div key={player.name}>
-                <h3>{player.name}</h3>
-                <ul>
-                  {player.games.map((game, index) => (
-                    <li key={index}>Game {index + 1}: {game} steps</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="right-container">
+            <Leaderboard players={players} />
+            <div className="player-history">
+              <h2>Player Game History</h2>
+              {players.map((player) => (
+                <div key={player.name}>
+                  <h3>{player.name}</h3>
+                  <ul>
+                    {player.games.map((game, index) => (
+                      <li key={index}>Game {index + 1}: {game} steps</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

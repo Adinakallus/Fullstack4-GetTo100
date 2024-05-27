@@ -1,4 +1,3 @@
-/* src/App.css */
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
@@ -19,24 +18,46 @@ header {
 
 .registration-container, .game-container {
   margin: 20px auto;
-  width: 80%;
-  max-width: 800px;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .game-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
+}
+
+.left-container, .right-container {
+  flex: 1;
+  margin: 10px;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-boards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 button {
   margin: 10px;
   padding: 10px;
-  background-color: #61dafb;
+  background-color: #a6deed;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #21a1f1;
 }
 
 button:disabled {
@@ -49,6 +70,7 @@ ul {
   padding: 0;
 }
 
-.leaderboard {
-  align-self: flex-start;
+.player-history {
+  margin-top: 20px;
+  text-align: left;
 }
