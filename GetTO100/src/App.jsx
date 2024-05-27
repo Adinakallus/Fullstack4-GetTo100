@@ -54,6 +54,9 @@ const App = () => {
     } else {
       setActivePlayerIndex(0);
     }
+    const updatedRegisteredPlayers = registeredPlayers.filter(player => player.name !== name);
+    setRegisteredPlayers(updatedRegisteredPlayers);
+    localStorage.setItem('registeredPlayers', JSON.stringify(updatedRegisteredPlayers));
   };
 
   const toggleHistory = (player) => {

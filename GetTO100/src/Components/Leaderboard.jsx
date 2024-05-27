@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Leaderboard.css';
 
-const Leaderboard = ({ players }) => {
+const Leaderboard = ({ registeredPlayers }) => {
   const [topPlayers, setTopPlayers] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Leaderboard = ({ players }) => {
       .sort((a, b) => a.averageSteps - b.averageSteps)
       .slice(0, 3);
     setTopPlayers(sortedPlayers);
-  }, [players]);
+  }, []);
 
   return (
     <div className="leaderboard">
@@ -19,21 +19,11 @@ const Leaderboard = ({ players }) => {
       <ol>
         {topPlayers.map((player) => (
           <li key={player.name}>
-            {player.name} - Average Steps: {player.averageSteps}
+            {player.name} - averageSteps {player.averageSteps}
           </li>
         ))}
       </ol>
-      {/* <h3>Current Players Average Steps</h3>
-      <ol>
-        {players
-          .filter((player) => player.games.length > 0)
-          .sort((a, b) => a.averageSteps - b.averageSteps)
-          .map((player) => (
-            <li key={player.name}>
-              {player.name} - Average Steps: {player.averageSteps}
-            </li>
-          ))}
-      </ol> */}
+
     </div>
   );
 };
