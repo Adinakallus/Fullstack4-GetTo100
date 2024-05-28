@@ -100,7 +100,7 @@ const App = () => {
                   removePlayer={removePlayer}
                   exitToHome={exitToHome}
                 />
-              ))}
+              ))} 
             </div>
             <div className="player-list">
               <h3>Current Players</h3>
@@ -108,7 +108,7 @@ const App = () => {
                 {currentPlayers.map(player => (
                   <li key={player.name}>
                     {player.name} - Average Steps: {player.averageSteps || 'N/A'}
-                    <button onClick={() => toggleHistory(player)}>Show History</button>
+                    <button onClick={() => toggleHistory(player)}>Game History</button>
                     {showHistory === player.name && (
                       <div className="player-history">
                         <h3>{player.name}'s Game History</h3>
@@ -125,7 +125,7 @@ const App = () => {
             </div>
           </div>
           <div className="right-container">
-            <Leaderboard players={registeredPlayers} />
+            <Leaderboard registeredPlayers={registeredPlayers} />
           </div>
         </div>
       )}
