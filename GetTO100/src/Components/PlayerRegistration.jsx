@@ -1,27 +1,30 @@
-// src/components/PlayerRegistration.jsx
 import React, { useState } from 'react';
 import '../css/PlayerRegistration.css';
 
-const PlayerRegistration = ({ addPlayer }) => {
+const PlayerRegistration = ({ addPlayer,registeredPlayers }) => {
   const [name, setName] = useState('');
-  const [showInput, setShowInput] = useState(false);
+  const [playerType, setPlayerType] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleAddPlayer = () => {
     if (name) {
-      const existingPlayers = JSON.parse(localStorage.getItem('players')) || {};
+      //const existingPlayers = JSON.parse(localStorage.getItem('players')) || {};
+      const existingPlayers = registeredPlayers.reduce((acc, player) => {
+        acc[player.name] = player;
+        return acc;
+      }, {});
 
-      if (showInput === 'new') {
+      if (playerType === 'new') {
         if (existingPlayers[name]) {
           setErrorMessage('Player already exists. Please use existing player option.');
           return;
         } else {
-          const player = { name, games: [], highScore: 0 };
+          const player = { name, games: [], averageSteps: 0 };
           existingPlayers[name] = player;
-          localStorage.setItem('players', JSON.stringify(existingPlayers));
+          localStorage.setItem('registeredPlayers', JSON.stringify(existingPlayers));
           addPlayer(player);
         }
-      } else if (showInput === 'existing') {
+      } else if (playerType === 'existing') {
         const player = existingPlayers[name];
         if (player) {
           addPlayer(player);
@@ -32,30 +35,30 @@ const PlayerRegistration = ({ addPlayer }) => {
       }
 
       setName('');
-      setShowInput(false);
+      setPlayerType(null);
       setErrorMessage('');
     }
   };
 
-  const handleNewPlayer = () => {
-    setShowInput('new');
-  };
-
-  const handleExistingPlayer = () => {
-    setShowInput('existing');
+  const handleTogglePlayerType = (type) => {
+    setPlayerType(type);
+    setErrorMessage('');
   };
 
   return (
     <div className="player-registration">
       <h2>Register Players:</h2>
-      {!showInput ? (
+      {!playerType ? (
         <div>
           <h3>Choose player type:</h3>
-          <button onClick={handleNewPlayer}>New Player</button>
-          <button onClick={handleExistingPlayer}>Existing Player</button>
+          <button onClick={() => handleTogglePlayerType('new')}>New Player</button>
+          <button onClick={() => handleTogglePlayerType('existing')}>Existing Player</button>
         </div>
       ) : (
         <div>
+          <button onClick={() => handleTogglePlayerType(playerType === 'new' ? 'existing' : 'new')}>
+            Switch to {playerType === 'new' ? 'Existing Player' : 'New Player'}
+          </button>
           <input
             type="text"
             value={name}
