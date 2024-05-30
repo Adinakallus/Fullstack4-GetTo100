@@ -22,12 +22,14 @@ const App = () => {
     localStorage.setItem('registeredPlayers', JSON.stringify(registeredPlayers));
   }, [registeredPlayers]);
 
-  const addPlayer = (player) => {
+  const addExistingPlayer = (player) => {
+    setCurrentPlayers([...currentPlayers, player]);
+  };
+  const addNewPlayer = (player) => {
     const newRegisteredPlayers = [...registeredPlayers, player];
     setRegisteredPlayers(newRegisteredPlayers);
     setCurrentPlayers([...currentPlayers, player]);
   };
-
   const updatePlayer = (updatedPlayer) => {
     const newCurrentPlayers = currentPlayers.map(player =>
       player.name === updatedPlayer.name ? updatedPlayer : player
@@ -77,7 +79,7 @@ const App = () => {
       </header>
       {!gameStarted ? (
         <div className="registration-container">
-          <PlayerRegistration addPlayer={addPlayer} registeredPlayers={registeredPlayers} />
+          <PlayerRegistration addNewPlayer={addNewPlayer}  addExistingPlayer={addExistingPlayer}registeredPlayers={registeredPlayers} />
           <h3>Players in Current Game:</h3>
           <ul>
             {currentPlayers.map((player, index) => (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../css/PlayerRegistration.css';
 
-const PlayerRegistration = ({ addPlayer,registeredPlayers }) => {
+const PlayerRegistration = ({ addNewPlayer,addExistingPlayer,registeredPlayers }) => {
   const [name, setName] = useState('');
   const [playerType, setPlayerType] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -22,12 +22,12 @@ const PlayerRegistration = ({ addPlayer,registeredPlayers }) => {
           const player = { name, games: [], averageSteps: 0 };
           existingPlayers[name] = player;
           localStorage.setItem('registeredPlayers', JSON.stringify(existingPlayers));
-          addPlayer(player);
+          addNewPlayer(player);
         }
       } else if (playerType === 'existing') {
         const player = existingPlayers[name];
         if (player) {
-          addPlayer(player);
+          addExistingPlayer(player);
         } else {
           setErrorMessage('Player does not exist. Please use new player option.');
           return;
