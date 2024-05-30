@@ -17,11 +17,14 @@ const App = () => {
     setRegisteredPlayers(storedPlayers);
   }, []);
 
+  // Save players to localStorage whenever registeredPlayers change
+  useEffect(() => {
+    localStorage.setItem('registeredPlayers', JSON.stringify(registeredPlayers));
+  }, [registeredPlayers]);
+
   const addPlayer = (player) => {
     const newRegisteredPlayers = [...registeredPlayers, player];
     setRegisteredPlayers(newRegisteredPlayers);
-    localStorage.setItem('registeredPlayers', JSON.stringify(newRegisteredPlayers));
-
     setCurrentPlayers([...currentPlayers, player]);
   };
 
@@ -56,7 +59,6 @@ const App = () => {
     }
     const updatedRegisteredPlayers = registeredPlayers.filter(player => player.name !== name);
     setRegisteredPlayers(updatedRegisteredPlayers);
-    localStorage.setItem('registeredPlayers', JSON.stringify(updatedRegisteredPlayers));
   };
 
   const toggleHistory = (player) => {
@@ -75,7 +77,7 @@ const App = () => {
       </header>
       {!gameStarted ? (
         <div className="registration-container">
-          <PlayerRegistration addPlayer={addPlayer}  registeredPlayers={registeredPlayers} />
+          <PlayerRegistration addPlayer={addPlayer} registeredPlayers={registeredPlayers} />
           <h3>Players in Current Game:</h3>
           <ul>
             {currentPlayers.map((player, index) => (
@@ -100,7 +102,7 @@ const App = () => {
                   removePlayer={removePlayer}
                   exitToHome={exitToHome}
                 />
-              ))} 
+              ))}
             </div>
             <div className="player-list">
               <h3>Current Players</h3>

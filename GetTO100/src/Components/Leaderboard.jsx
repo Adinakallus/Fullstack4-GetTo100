@@ -5,13 +5,12 @@ const Leaderboard = ({ registeredPlayers }) => {
   const [topPlayers, setTopPlayers] = useState([]);
 
   useEffect(() => {
-    const storedPlayers = JSON.parse(localStorage.getItem('registeredPlayers')) || {};
-    const sortedPlayers = Object.values(storedPlayers)
+    const sortedPlayers = registeredPlayers
       .filter((player) => player.averageSteps > 0)
       .sort((a, b) => a.averageSteps - b.averageSteps)
       .slice(0, 3);
     setTopPlayers(sortedPlayers);
-  }, []);
+  }, [registeredPlayers]);
 
   return (
     <div className="leaderboard">
@@ -23,7 +22,6 @@ const Leaderboard = ({ registeredPlayers }) => {
           </li>
         ))}
       </ol>
-
     </div>
   );
 };
