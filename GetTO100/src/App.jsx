@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PlayerRegistration from './Components/PlayerRegistration';
+import PlayerRegistration from './ /PlayerRegistration';
 import GameBoard from './Components/Gameboard';
 import Leaderboard from './Components/Leaderboard';
 import '../src/css/App.css';
